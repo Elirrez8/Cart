@@ -25,17 +25,17 @@ export const AddProducts = () => {
     // add product
     const addProduct = (e) => {
         e.preventDefault();
-        const uploadTask = storage.ref(`product-images/${productImg.name}`).put(productImg);
+        const uploadTask = storage.ref(`product-images/${image.Name}`).put(productImg);
         uploadTask.on('state_changed', snapshot => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(progress);
         }, err => setError(err.message)
             , () => {
-                storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
+                storage.ref('product-images').child(image.Name).getDownloadURL().then(url => {
                     db.collection('Products').add({
-                        ProductName: productName,
-                        ProductPrice: Number(productPrice),
-                        ProductImg: url
+                        name: productName,
+                        price: Number(productPrice),
+                        image: url
                     }).then(() => {
                         setProductName('');
                         setProductPrice(0)

@@ -14,7 +14,7 @@ export const Login = (props) => {
             setEmail('');
             setPassword('');
             setError('');
-            props.history.push('/');
+            props.navigate.push('/');
         }).catch(err => setError(err.message));
     }
 

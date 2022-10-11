@@ -6,19 +6,19 @@ import { ic_add } from 'react-icons-kit/md/ic_add'
 import { ic_remove } from 'react-icons-kit/md/ic_remove'
 import { iosTrashOutline } from 'react-icons-kit/ionicons/iosTrashOutline'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { auth } from '../Config/Config'
 
 export const Cart = ({ user }) => {
 
     const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(CartContext);
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             if (!user) {
-                history.push('/login');
+        navigate.push('/login');
             }
         })
     })
@@ -39,12 +39,12 @@ export const Cart = ({ user }) => {
                         <div className='cart-card' key={cart.ProductID}>
 
                             <div className='cart-img'>
-                                <img src={cart.ProductImg} alt="not found" />
+                                <img src={cart.image} alt="not found" />
                             </div>
 
-                            <div className='cart-name'>{cart.ProductName}</div>
+                            <div className='cart-name'>{cart.name}</div>
 
-                            <div className='cart-price-orignal'>Rs {cart.ProductPrice}.00</div>
+                            <div className='cart-price-orignal'>Rs {cart.price}.00</div>
 
                             <div className='inc' onClick={() => dispatch({ type: 'INC', id: cart.ProductID, cart })}>
                                 <Icon icon={ic_add} size={24} />

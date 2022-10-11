@@ -1,19 +1,20 @@
 import React from 'react'
+import '../css/Home.css'
 import { Navbar } from './Navbar';
 import { Products } from './Products';
-
-import { useHistory } from 'react-router-dom'
 import { auth } from '../Config/Config'
+
+import { useNavigate } from 'react-router-dom'
 
 export const Home = ({ user }) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // forcing user to signup
         auth.onAuthStateChanged(user => {
             if (!user) {
-                history.push('/login');
+                navigate.push('/login');
             }
         })
     })

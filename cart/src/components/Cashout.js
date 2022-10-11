@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { auth, db } from '../Config/Config'
 import { CartContext } from '../Global/CartContext'
 import { Navbar } from './Navbar';
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const Cashout = (props) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const { shoppingCart, totalPrice, totalQty, dispatch } = useContext(CartContext);
 
@@ -22,12 +22,12 @@ export const Cashout = (props) => {
         auth.onAuthStateChanged(user => {
             if (user) {
                 db.collection('SignedUpUsersData').doc(user.uid).onSnapshot(snapshot => {
-                    setName(snapshot.data().Name);
-                    setEmail(snapshot.data().Email);
+                    setName(snapshot.data().name);
+                    setEmail(snapshot.data().email);
                 })
             }
             else {
-                history.push('/login')
+                navigate.push('/login')
             }
         })
     })
@@ -48,11 +48,11 @@ export const Cashout = (props) => {
                 }).then(() => {
                     setCell('');
                     setAddress('');
-                    dispatch({ type: 'EMPTY' })
-                    setSuccessMsg('Your order has been placed successfully. Thanks for visiting us. You will be redirected to home page after 5 seconds');
+                    dispatch({ type: 'VACIO' })
+                    setSuccessMsg('Su orden se complete con exito. Gracias!');
                     setTimeout(() => {
-                        history.push('/')
-                    }, 5000)
+                        navigate.push('/')
+                    }, 3000)
                 }).catch(err => setError(err.message))
             }
         })
@@ -67,31 +67,31 @@ export const Cashout = (props) => {
                 <br />
                 {successMsg && <div className='success-msg'>{successMsg}</div>}
                 <form autoComplete="off" className='form-group' onSubmit={cashoutSubmit}>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Nombre</label>
                     <input type="text" className='form-control' required
                         value={name} disabled />
                     <br />
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Correo</label>
                     <input type="email" className='form-control' required
                         value={email} disabled />
                     <br />
-                    <label htmlFor="Cell No">Cell No</label>
+                    <label htmlFor="Cell No">Numero de telefono</label>
                     <input type="number" className='form-control' required
                         onChange={(e) => setCell(e.target.value)} value={cell} placeholder='eg 03123456789' />
                     <br />
-                    <label htmlFor="Delivery Address">Delivery Address</label>
+                    <label htmlFor="Delivery Address">Costo de envío</label>
                     <input type="text" className='form-control' required
                         onChange={(e) => setAddress(e.target.value)} value={address} />
                     <br />
-                    <label htmlFor="Price To Pay">Price To Pay</label>
+                    <label htmlFor="Price To Pay">Precio a pagar</label>
                     <input type="number" className='form-control' required
                         value={totalPrice} disabled />
                     <br />
-                    <label htmlFor="Total No of Products">Total No of Products</label>
+                    <label htmlFor="Total No of Products">Numero de productos</label>
                     <input type="number" className='form-control' required
                         value={totalQty} disabled />
                     <br />
-                    <button type="submit" className='btn btn-success btn-md mybtn'>SUBMIT</button>
+                    <button type="submit" className='btn btn-success btn-md mybtn'>ENVIAR</button>
                 </form>
                 {error && <span className='error-msg'>{error}</span>}
             </div>

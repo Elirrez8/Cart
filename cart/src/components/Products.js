@@ -16,13 +16,13 @@ export const Products = () => {
                 {products.map(product => (
                     <div className='product-card' key={product.ProductID}>
                         <div className='product-img'>
-                            <img src={product.ProductImg} alt="not found" />
+                            <img src={product.image} alt="not found" />
                         </div>
                         <div className='product-name'>
-                            {product.ProductName}
+                            {product.name}
                         </div>
                         <div className='product-price'>
-                            Rs {product.ProductPrice}.00
+                            Rs {product.price}.00
                     </div>
                         <button className='addcart-btn' onClick={() => dispatch({ type: 'ADD_TO_CART', id: product.ProductID, product })}>ADD TO CART</button>
                     </div>

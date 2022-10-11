@@ -1,22 +1,21 @@
 import React from 'react'
-
 import logo from '../images/ecommerce.svg'
 import { Link } from 'react-router-dom'
 import { auth } from '../Config/Config'
 import { Icon } from 'react-icons-kit'
 import { cart } from 'react-icons-kit/entypo/cart'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CartContext } from '../Global/CartContext'
 
 export const Navbar = ({ user }) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const { totalQty } = useContext(CartContext);
 
     // handle logout
     const handleLogout = () => {
         auth.signOut().then(() => {
-            history.push('/login');
+            navigate.push('/login');
         })
     }
 
