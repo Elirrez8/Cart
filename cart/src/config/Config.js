@@ -1,11 +1,13 @@
-import "firebase/compat/database"; 
+/*import "firebase/compat/database"; */
 import firebase from 'firebase/compat/app'
-
-import 'firebase/storage';
 import 'firebase/firestore';
-import 'firebase/auth'
 
-const firebaseConfig = {
+
+import 'firebase/compat/storage';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth'
+
+export const firebaseConfig = {
   apiKey: "AIzaSyDe-Z9WAeiXItb98Pmlvk2QTN-x12HDaPM",
   authDomain: "cursos-c2a5e.firebaseapp.com",
   databaseURL: "https://cursos-c2a5e-default-rtdb.firebaseio.com",
@@ -19,6 +21,7 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   const auth = firebase.auth();
+
   const db = firebase.firestore();
   const storage = firebase.storage();
 

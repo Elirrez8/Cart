@@ -10,15 +10,13 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from '../config/Config'
 
 export const Cart = ({ user }) => {
-
     const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(CartContext);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             if (!user) {
-        navigate.push('/login');
+                navigate('/login');
             }
         })
     })
@@ -39,12 +37,12 @@ export const Cart = ({ user }) => {
                         <div className='cart-card' key={cart.ProductID}>
 
                             <div className='cart-img'>
-                                <img src={cart.image} alt="not found" />
+                                <img src={cart.ProductImg} alt="not found" />
                             </div>
 
-                            <div className='cart-name'>{cart.name}</div>
+                            <div className='cart-name'>{cart.ProductName}</div>
 
-                            <div className='cart-price-orignal'>Rs {cart.price}.00</div>
+                            <div className='cart-price-orignal'>Rs {cart.ProductPrice}.00</div>
 
                             <div className='inc' onClick={() => dispatch({ type: 'INC', id: cart.ProductID, cart })}>
                                 <Icon icon={ic_add} size={24} />

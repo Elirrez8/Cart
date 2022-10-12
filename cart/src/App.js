@@ -8,7 +8,7 @@ import { CartContextProvider } from './global/CartContext';
 import { Cart } from './components/Cart'
 import { NotFound } from './components/NotFound'
 import React,  { Component } from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 
 export class App extends Component {
 state = { user: null}
@@ -31,17 +31,16 @@ state = { user: null}
       <>
       <ProductsContextProvider>
        <CartContextProvider>
-      <BrowserRouter>
+    
       <Routes>
           <Route  path='/' element={() =>  <Home user={this.state.user} />} />
-          <Route  path='addproducts' element={<AddProducts/>}/>
-          <Route  path='signup' element={<Signup/>} />
-          <Route  path='login' element={<Login/>} />
-          <Route  path='cartproducts' element={() => <Cart user={this.state.user} />} />
-          <Route  path='cartproducts' element={() => <Cart user={this.state.user} />} />
-          <Route  element={<NotFound/>} />
+          <Route  path='/addproducts' element={<AddProducts/>}/>
+          <Route  path='/signup' element={<Signup/>} />
+          <Route  path='/login' element={<Login/>} />
+          <Route  path='/cartproducts' element={() => <Cart user={this.state.user} />} />
+          <Route  path='/NotFound'  element={<NotFound/>} />
       </Routes>
-      </BrowserRouter>
+     
       </CartContextProvider>
       </ProductsContextProvider>
       </>

@@ -1,6 +1,11 @@
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 export const CartReducer = (state, action) => {
-    const { shoppingCart, totalPrice, totalQty, toast, price } = state;
+
+    const { shoppingCart, totalPrice, totalQty } = state;
 
     let product;
     let index;
@@ -13,7 +18,7 @@ export const CartReducer = (state, action) => {
 
             const check = shoppingCart.find(product => product.ProductID === action.id);
             if (check) {
-                toast.info('Este curso ya esta en el carrito', {
+                toast.info('this product is already in your cart', {
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -27,9 +32,9 @@ export const CartReducer = (state, action) => {
             else {
                 product = action.product;
                 product['qty'] = 1;
-                product['TotalProductPrice'] = product.price * product.qty;
+                product['TotalProductPrice'] = product.ProductPrice * product.qty;
                 updatedQty = totalQty + 1;
-                updatedPrice = totalPrice + product.price;
+                updatedPrice = totalPrice + product.ProductPrice;
                 return {
                     shoppingCart: [product, ...shoppingCart], totalPrice: updatedPrice, totalQty: updatedQty
                 }
@@ -39,9 +44,9 @@ export const CartReducer = (state, action) => {
         case 'INC':
             product = action.cart;
             product.qty = ++product.qty;
-            product.TotalProductPrice = product.qty * price;
+            product.TotalProductPrice = product.qty * product.ProductPrice;
             updatedQty = totalQty + 1;
-            updatedPrice = totalPrice + product.price;
+            updatedPrice = totalPrice + product.ProductPrice;
             index = shoppingCart.findIndex(cart => cart.ProductID === action.id);
             shoppingCart[index] = product;
             return {
@@ -53,8 +58,8 @@ export const CartReducer = (state, action) => {
             product = action.cart;
             if (product.qty > 1) {
                 product.qty = product.qty - 1;
-                product.TotalProductPrice = product.qty * product.price;
-                updatedPrice = totalPrice - product.price;
+                product.TotalProductPrice = product.qty * product.ProductPrice;
+                updatedPrice = totalPrice - product.ProductPrice;
                 updatedQty = totalQty - 1;
                 index = shoppingCart.findIndex(cart => cart.ProductID === action.id);
                 shoppingCart[index] = product;
@@ -71,13 +76,13 @@ export const CartReducer = (state, action) => {
             const filtered = shoppingCart.filter(product => product.ProductID !== action.id);
             product = action.cart;
             updatedQty = totalQty - product.qty;
-            updatedPrice = totalPrice - product.qty * product.price;
+            updatedPrice = totalPrice - product.qty * product.ProductPrice;
             return {
                 shoppingCart: [...filtered], totalPrice: updatedPrice, totalQty: updatedQty
             }
         
 
-        case 'VACIO':
+        case 'EMPTY':
             return {
                 shoppingCart: [], totalPrice: 0, totalQty: 0
             }
@@ -88,9 +93,3 @@ export const CartReducer = (state, action) => {
     }
 
 }
-
-/**import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-toast.configure();
- */

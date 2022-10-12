@@ -5,7 +5,7 @@ export const AddProducts = () => {
 
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState(0);
-    const [image, setProductImg] = useState(null);
+    const [productImg, setProductImg] = useState(null);
     const [error, setError] = useState('');
 
     const types = ['image/png', 'image/jpeg']; // image types
@@ -25,17 +25,17 @@ export const AddProducts = () => {
     // add product
     const addProduct = (e) => {
         e.preventDefault();
-        const uploadTask = storage.ref(`product-images/${image.Name}`).put(image);
+        const uploadTask = storage.ref(`product-images/${productImg.name}`).put(productImg);
         uploadTask.on('state_changed', snapshot => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(progress);
         }, err => setError(err.message)
             , () => {
-                storage.ref('product-images').child(image.Name).getDownloadURL().then(url => {
+                storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
                     db.collection('Products').add({
-                        name: productName,
-                        price: Number(productPrice),
-                        image: url
+                        ProductName: productName,
+                        ProductPrice: Number(productPrice),
+                        ProductImg: url
                     }).then(() => {
                         setProductName('');
                         setProductPrice(0)

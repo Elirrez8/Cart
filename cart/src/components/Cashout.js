@@ -21,13 +21,13 @@ export const Cashout = (props) => {
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             if (user) {
-                db.collection('SignedUpUsersData').doc(user.uid).onSnapshot(snapshot => {
+                db.collection('SignedUpUserData').doc(user.uid).onSnapshot(snapshot => {
                     setName(snapshot.data().name);
                     setEmail(snapshot.data().email);
                 })
             }
             else {
-                navigate.push('/login')
+                navigate('/login')
             }
         })
     })
@@ -51,7 +51,7 @@ export const Cashout = (props) => {
                     dispatch({ type: 'VACIO' })
                     setSuccessMsg('Su orden se complete con exito. Gracias!');
                     setTimeout(() => {
-                        navigate.push('/')
+                        navigate('/')
                     }, 3000)
                 }).catch(err => setError(err.message))
             }

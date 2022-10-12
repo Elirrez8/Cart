@@ -15,16 +15,16 @@ export const Signup = (props) => {
     const signup = (e) => {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-            db.collection('SignedUpUsersData').doc(cred.user.uid).set({
-                name: name,
-                email: email,
-                password: password
+            db.collection('SignedUpUserData').doc(cred.user.uid).set({
+                Name: name,
+                Email: email,
+                Password: password
             }).then(() => {
                 setName('');
                 setEmail('');
                 setPassword('');
                 setError('');
-                props.navigate.push('/login');
+                props.history.push('/login');
             }).catch(err => setError(err.message));
         }).catch(err => setError(err.message));
     }
