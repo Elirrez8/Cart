@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../css/Home.css'
 import { Navbar } from './Navbar';
 import { Products } from './Products';
-import { auth } from '../Config/Config'
+import { auth } from '../config/Config'
 
 import { useNavigate } from 'react-router-dom'
 

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../images/ecommerce.svg'
 import { Link } from 'react-router-dom'
-import { auth } from '../Config/Config'
+import { auth } from '../config/Config'
 import { Icon } from 'react-icons-kit'
 import { cart } from 'react-icons-kit/entypo/cart'
 import { useNavigate } from 'react-router-dom'
-import { CartContext } from '../Global/CartContext'
+import { CartContext } from '../global/CartContext'
 
 export const Navbar = ({ user }) => {
 

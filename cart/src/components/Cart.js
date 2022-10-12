@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { CartContext } from '../Global/CartContext'
+import { CartContext } from '../global/CartContext'
 import { Navbar } from './Navbar';
 import { Icon } from 'react-icons-kit'
 import { ic_add } from 'react-icons-kit/md/ic_add'
@@ -7,7 +7,7 @@ import { ic_remove } from 'react-icons-kit/md/ic_remove'
 import { iosTrashOutline } from 'react-icons-kit/ionicons/iosTrashOutline'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { auth } from '../Config/Config'
+import { auth } from '../config/Config'
 
 export const Cart = ({ user }) => {
 

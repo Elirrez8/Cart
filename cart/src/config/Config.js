@@ -1,11 +1,14 @@
-import * as firebase from 'firebase'
-import 'firebae/auth';
-import 'firebase/firestore';
+import "firebase/compat/database"; 
+import firebase from 'firebase/compat/app'
+
 import 'firebase/storage';
+import 'firebase/firestore';
+import 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe-Z9WAeiXItb98Pmlvk2QTN-x12HDaPM",
   authDomain: "cursos-c2a5e.firebaseapp.com",
+  databaseURL: "https://cursos-c2a5e-default-rtdb.firebaseio.com",
   projectId: "cursos-c2a5e",
   storageBucket: "cursos-c2a5e.appspot.com",
   messagingSenderId: "561674158483",

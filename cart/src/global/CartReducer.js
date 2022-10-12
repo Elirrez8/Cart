@@ -1,10 +1,6 @@
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-toast.configure();
 
 export const CartReducer = (state, action) => {
-    const { shoppingCart, totalPrice, totalQty } = state;
+    const { shoppingCart, totalPrice, totalQty, toast, price } = state;
 
     let product;
     let index;
@@ -38,7 +34,7 @@ export const CartReducer = (state, action) => {
                     shoppingCart: [product, ...shoppingCart], totalPrice: updatedPrice, totalQty: updatedQty
                 }
             }
-            break;
+            
 
         case 'INC':
             product = action.cart;
@@ -51,7 +47,7 @@ export const CartReducer = (state, action) => {
             return {
                 shoppingCart: [...shoppingCart], totalPrice: updatedPrice, totalQty: updatedQty
             }
-            break;
+            
 
         case 'DEC':
             product = action.cart;
@@ -69,7 +65,7 @@ export const CartReducer = (state, action) => {
             else {
                 return state;
             }
-            break;
+            
 
         case 'DELETE':
             const filtered = shoppingCart.filter(product => product.ProductID !== action.id);
@@ -79,7 +75,7 @@ export const CartReducer = (state, action) => {
             return {
                 shoppingCart: [...filtered], totalPrice: updatedPrice, totalQty: updatedQty
             }
-            break;
+        
 
         case 'VACIO':
             return {
@@ -92,3 +88,9 @@ export const CartReducer = (state, action) => {
     }
 
 }
+
+/**import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+ */

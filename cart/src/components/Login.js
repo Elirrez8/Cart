@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { auth } from '../Config/Config'
+import { auth } from '../config/Config'
 import { Link } from 'react-router-dom'
 
 export const Login = (props) => {
