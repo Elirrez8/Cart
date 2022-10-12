@@ -14,7 +14,7 @@ export const Home = ({ user }) => {
         // forcing user to signup
         auth.onAuthStateChanged(user => {
             if (!user) {
-                navigate.push('/login');
+                navigate('/login');
             }
         })
     })

@@ -28,20 +28,22 @@ state = { user: null}
 
   render() {
      return (
+      <>
       <ProductsContextProvider>
        <CartContextProvider>
       <BrowserRouter>
       <Routes>
           <Route  path='/' element={() =>  <Home user={this.state.user} />} />
-          <Route  path='/addproducts' element={<AddProducts/>}/>
-          <Route  path='/signup' element={<Signup/>} />
-          <Route  path='/login' element={<Login/>} />
-          <Route  path='/cartproducts/' element={() => <Cart user={this.state.user} />} />
-          <Route  path='/cartproducts/' element={() => <Cart user={this.state.user} />} />
+          <Route  path='addproducts' element={<AddProducts/>}/>
+          <Route  path='signup' element={<Signup/>} />
+          <Route  path='login' element={<Login/>} />
+          <Route  path='cartproducts' element={() => <Cart user={this.state.user} />} />
+          <Route  path='cartproducts' element={() => <Cart user={this.state.user} />} />
           <Route  element={<NotFound/>} />
       </Routes>
       </BrowserRouter>
       </CartContextProvider>
       </ProductsContextProvider>
+      </>
      ) }}
 export default App;

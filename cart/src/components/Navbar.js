@@ -15,7 +15,7 @@ export const Navbar = ({ user }) => {
     // handle logout
     const handleLogout = () => {
         auth.signOut().then(() => {
-            navigate.push('/login');
+            navigate('/login');
         })
     }
 
